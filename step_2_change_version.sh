@@ -31,7 +31,7 @@ set_failure() {
     echo "#===================================================================#"
     echo "Step 2: Failed"
     echo "#===================================================================#"
-
+    exit $1
 }
 #===================================================================#
 
@@ -70,8 +70,7 @@ check_old_version() {
         echo "OLD VERSION: $OLD_VERSION"
         echo "NEW VERSION: $NEW_VERSION"
         echo "No change, aborting test"
-        set_failure
-        exit 5
+        set_failure 5
     else
         echo "OLD VERSION WAS:     $OLD_VERSION"
         echo "NEW VERSION WILL BE: $NEW_VERSION"
@@ -159,10 +158,9 @@ update_version_dot_h() {
         echo "File $WOLFSSL_ROOT_LOCATION/wolfssl/version.h unchanged."
         echo "UPDATE FAILED."
         r_1
-        set_failure
         mv $TEMP_BACKUP "wolfssl/version.h"
         cd $CURR_LOC
-        exit 5
+        set_failure 5
     else
        echo "File $WOLFSSL_ROOT_LOCATION/wolfssl/version.h updated"
        echo "#===================================================================#"
@@ -188,8 +186,7 @@ if [ -z "$NEW_VERSION" ]; then
     echo "USAGE:      ./step_2_change_version.sh <version #>"
     r_1
     echo "EXAMPLE:    ./step_2_change_version.sh 3.8.1"
-    set_failure
-    exit 5
+    set_failure 5
 else
     echo "VERSION IS SET TO:   $NEW_VERSION"
 fi
