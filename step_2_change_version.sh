@@ -66,7 +66,7 @@ check_old_version() {
         echo "#===================================================================#"
         echo "Step 2: Failed"
         echo "#===================================================================#"
-        exit 0
+        exit 5
     else
         echo "OLD VERSION WAS:     $OLD_VERSION"
         echo "NEW VERSION WILL BE: $NEW_VERSION"
@@ -212,3 +212,4 @@ echo "#-------------------------------------------------------------------#"
 update_version_dot_h
 r_2
 r_2
+exit 0
