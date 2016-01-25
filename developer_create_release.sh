@@ -4,5 +4,5 @@
 ./step_1_get_latest_sources.sh
 
 #update the version
-./step_2_change_version.sh 3.8.1
+./step_2_change_version.sh # INSERT NEW VERSION HERE #
 
