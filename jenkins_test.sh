@@ -12,7 +12,7 @@ else
 fi
 
 #update the version
-./step_2_change_version.sh 3.8.1 > /dev/null
+./step_2_change_version.sh 3.8.2 > /dev/null
 
 RESULT=$?
 if [ $RESULT -ne 0 ]; then
@@ -20,5 +20,15 @@ if [ $RESULT -ne 0 ]; then
     exit 5
 else
     echo "STEP 2: SUCCESS"
+fi
+
+./step_3_check_example_cert_and_crl_dates.sh > /dev/null
+
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+    echo "STEP 3: FAIL"
+    exit 5
+else
+    echo "STEP 3: SUCCESS"
 fi
 

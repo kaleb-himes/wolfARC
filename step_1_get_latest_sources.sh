@@ -40,19 +40,22 @@ RESULT=$?
 # test that git clone returned a 0 for success
 if [ $RESULT != 0 ]; then
     echo "#===================================================================#"
-    echo "### RELEASE FAILED ### Step 1: Get Latest Sources from github failed"
+    echo "Step 1: FAILED"
+    echo "#===================================================================#"
     # if git clone got some of the files but not all cleanup
     if [ -d $DIRECTORY ]; then
         rm -rf $DIRECTORY
     fi
-    echo "#===================================================================#"
     r_1
     exit 5
 else
     echo "#===================================================================#"
     echo "Step 1: SUCCESS"
+    echo "#===================================================================#"
 fi
 
-echo "#===================================================================#"
+r_1
+r_1
+r_1
 r_1
 exit 0

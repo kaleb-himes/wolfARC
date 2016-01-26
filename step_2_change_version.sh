@@ -19,21 +19,20 @@ WOLFSSL_ROOT_LOCATION="$WORKING_DIR/wolfssl"
 r_1(){
 echo ""
 }
-#===================================================================#
 
 # Function Return 2 lines
 r_2(){
 echo ""
 echo ""
 }
-#===================================================================#
+
+# Function set failure and exit
 set_failure() {
     echo "#===================================================================#"
     echo "Step 2: Failed"
     echo "#===================================================================#"
     exit $1
 }
-#===================================================================#
 
 # Function Get String
 get_string() {
@@ -41,7 +40,6 @@ get_string() {
     echo "Identified the line we want to modify:"
     echo "$STRING_FOUND"
 }
-#===================================================================#
 
 # Function Get Line Number
 get_line_num() {
@@ -54,9 +52,8 @@ get_line_num() {
     LINE_NUM=`grep -n $1 $2 | cut -f1 -d:`
     echo "Located at line #$LINE_NUM of file $2"
 }
-#===================================================================#
 
-#get the old version
+#Function get the old version
 check_old_version() {
     STRING_TO_FIND="AC_INIT(\[wolfssl\],\["
     FILE_TO_LOOK_IN="$WOLFSSL_ROOT_LOCATION/configure.ac"
@@ -71,13 +68,15 @@ check_old_version() {
         echo "NEW VERSION: $NEW_VERSION"
         echo "No change, aborting test"
         set_failure 5
+    # ADD A CASE FOR CHECKING IF OLD VERSION GREATER THEN NEW VERSION
+    # elif
+    # old version = 3.8.0 and new version = 3.7.9 then fail
     else
         echo "OLD VERSION WAS:     $OLD_VERSION"
         echo "NEW VERSION WILL BE: $NEW_VERSION"
         echo "Version is updated, proceed with the release cycle"
     fi
 }
-#===================================================================#
 
 # Function update configure.ac
 update_configure_dot_ac() {
@@ -129,7 +128,6 @@ update_configure_dot_ac() {
     echo "The new file has been created now replace configure.ac with $NEW_FILE"
     mv $NEW_FILE $WOLFSSL_ROOT_LOCATION/configure.ac
 }
-#===================================================================#
 
 # Function update version.h
 update_version_dot_h() {
@@ -172,9 +170,13 @@ update_version_dot_h() {
 
     cd $CURR_LOC
 }
+
+
 #####################################################################
-######################## Functions ##################################
+###################### End Functions ################################
 #####################################################################
+
+
 
 echo "#===================================================================#"
 echo "Step 2: Begin"
