@@ -49,6 +49,8 @@ get_line_num() {
     #    format from grep is like this: "x: <line grepped for"
     #    so we cut on the first occurance of the character ":"
     #    leaving us with just the line number
+    #    @arg $1: String to grep for
+    #    @arg $2: file to grep in
     LINE_NUM=`grep -n $1 $2 | cut -f1 -d:`
     echo "Located at line #$LINE_NUM of file $2"
 }
