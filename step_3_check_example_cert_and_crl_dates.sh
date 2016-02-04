@@ -94,9 +94,13 @@ process_date() {
     fi
     # Process the date
     DIFF_YEAR=$(( CHECK_YEAR - NOW_YEAR ))
-    DIFF_MONTH=$(( CHECK_MONTH_NUM - NOW_MONTH_NUM ))
+    if [ $CHECK_MONTH_NUM -gt $NOW_MONTH_NUM ]; then
+        DIFF_MONTH=$(( CHECK_MONTH_NUM - NOW_MONTH_NUM ))
+    else
+        DIFF_MONTH=$(( NOW_MONTH_NUM - CHECK_MONTH_NUM))
+    fi
     if [ $DIFF_YEAR -eq 0 ]; then
-        if [ $DIFF_MONTH -le 4 ]; then
+        if [ $DIFF_MONTH -le 4 ] && [ $DIFF_MONTH -ge 0 ]; then
             echo "Certificates need to be updated"
             set_failure 5
         else

@@ -193,6 +193,7 @@ if [ -z "$NEW_VERSION" ]; then
     set_failure 5
 else
     echo "VERSION IS SET TO:   $NEW_VERSION"
+    export NEW_VERSION_GLOBAL=$NEW_VERSION
 fi
 
 # If there is no change in version this method will abort the release cycle
